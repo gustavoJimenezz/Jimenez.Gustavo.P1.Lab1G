@@ -36,3 +36,44 @@ int peticionEnteroPositivo(int* numEntero, char texto[], int intentos)
     }
     return retorno;
 }
+
+int peticionFecha(int* numDia, int* numMes, int* numAnio, char texto[], int intentos)
+{
+    int retorno = 0;
+    int auxDia;
+    int auxMes;
+    int auxAnio;
+    int esNum;
+
+    if (texto != NULL && intentos > 0)
+    {
+        printf("%s", texto);
+        esNum = scanf("%d/%d/%d", &auxDia , &auxMes, &auxAnio);
+        fflush(stdin);
+
+        while((auxDia <= 0 || auxDia > 31) ||
+              (auxMes <= 0 || auxMes > 12) ||
+              (auxAnio <= 0 || auxAnio < 1800) || esNum != 3 )
+        {
+            printf("Error, datos incorrectos intentos %d\n", intentos);
+
+            printf("%s", texto);
+            esNum = scanf("%d/%d/%d", &auxDia , &auxMes, &auxAnio);
+
+            fflush(stdin);
+            intentos--;
+            if( intentos == 0)
+            {
+                break;
+            }
+        }
+        if(intentos != 0)
+        {
+            *numDia = auxDia;
+            *numMes = auxMes;
+            *numAnio = auxAnio;
+            retorno = 1;
+        }
+    }
+    return retorno;
+}

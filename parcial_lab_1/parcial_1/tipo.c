@@ -10,18 +10,17 @@ int mostrarTipos( eTipo listTipos[], int tam)
     int todoOk = 0;
     if (listTipos != NULL && tam > 0 )
     {
-        printf("     *** Tipo de Vuelo ***   \n\n");
-        printf("_____________________________\n\n");
-        printf("  Id              Descripcion\n");
-        printf("_____________________________\n");
+        printf("\n    *** Tipo de Aviones ***      \n");
+        printf("______________________________\n\n");
+        printf("     Id            Descripcion\n");
+        printf("______________________________\n\n");
         for (int i = 0; i < tam; i++)
         {
-            printf("  %d       %-10s\n", listTipos[i].id, listTipos[i].descripcion);
+            printf("  %5d       %16s\n", listTipos[i].id, listTipos[i].descripcion);
         }
-        printf("\n\n");
         todoOk = 1;
     }
-
+    printf("\n\n");
     return todoOk;
 }
 

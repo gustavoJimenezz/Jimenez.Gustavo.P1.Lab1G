@@ -31,9 +31,37 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="aerolinea.h" />
+		<Unit filename="aerolineas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="avion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="avion.h" />
+		<Unit filename="destino.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="destino.h" />
+		<Unit filename="fncionesValidacion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesValidacion.h" />
+		<Unit filename="hard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="hard.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="tipo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tipo.h" />
+		<Unit filename="vuelo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vuelo.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

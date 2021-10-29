@@ -1,6 +1,6 @@
 #ifndef HARD_H_INCLUDED
 #define HARD_H_INCLUDED
 
-
-
 #endif // HARD_H_INCLUDED
+
+
