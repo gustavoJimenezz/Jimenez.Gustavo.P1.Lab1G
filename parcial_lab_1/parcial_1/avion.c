@@ -5,6 +5,7 @@
 #include "aerolinea.h"
 #include "tipo.h"
 #include "destino.h"
+#include "estructuraPiloto.h"
 #include "avion.h"
 #include "vuelo.h"
 #include "funcionesValidacion.h"
@@ -104,24 +105,27 @@ int peticionCapacidad( int* capacidad , char texto[], int intentos)
     return retorno;
 }
 
-void mostrarAvion(eAvion unAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo)
+void mostrarAvion(eAvion unAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPiloto[], int tamPiloto)
 {
     char descripcionAero[20];
     char descripcionTipo[20];
+    char descripcionPiloto[20];
 
     if ( cargarDescripcionAerolineas( listaAerolineas, tamAero, unAvion.idAerolinea, descripcionAero) == 1 &&
-         cargarDescripcionTipo(listaTipos, tamTipo, unAvion.idTipo, descripcionTipo) == 1)
+         cargarDescripcionTipo(listaTipos, tamTipo, unAvion.idTipo, descripcionTipo) == 1 &&
+         cargarDescripcionPiloto(listaPiloto, tamPiloto,  unAvion.ipPiloto, descripcionPiloto) == 1)
     {
-        printf("  %6d     %14s      %8s     %14d\n",
+        printf("  %6d     %14s      %10s     %14d     %11s\n",
                unAvion.id,
                descripcionAero,
                descripcionTipo,
-               unAvion.capacidad);
+               unAvion.capacidad,
+               descripcionPiloto);
     }
 
 }
 
-int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo)
+int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPiloto[], int tamPiloto)
 {
     int todoOk = 0;
     int flag = 1;
@@ -129,14 +133,14 @@ int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[]
     {
 
         printf("\n                    *** Lista Aviones ***      \n");
-        printf("_____________________________________________________________\n\n");
-        printf("      ID          Aerolinea          Tipo          Capacidad\n");
-        printf("_____________________________________________________________\n\n");
+        printf("______________________________________________________________________________\n\n");
+        printf("      ID          Aerolinea            Tipo          Capacidad          Piloto\n");
+        printf("______________________________________________________________________________\n\n");
         for (int i = 0; i < tam; i++)
         {
             if (listaAviones[i].isEmpty == 1)
             {
-                mostrarAvion(listaAviones[i], listaAerolineas, tamAero, listaTipos, tamTipo);
+                mostrarAvion(listaAviones[i], listaAerolineas, tamAero, listaTipos, tamTipo, listaPiloto, tamPiloto);
                 flag = 0;
             }
         }
@@ -151,7 +155,7 @@ int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[]
     return todoOk;
 }
 
-int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, int intentos)
+int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, int intentos, ePiloto listaPilotos[], int tamPilotos)
 {
     int error = 1;
     int opcionSalir = 0;
@@ -163,7 +167,7 @@ int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[]
 
     if(listaAviones != NULL && tam > 0 && listaAerolineas != NULL && tamAero > 0 && listaTipos != NULL && tamTipo > 0 && intentos > 0)
     {
-        mostrarAviones(listaAviones, tam, listaAerolineas, tamAero, listaTipos, tamTipo);
+        mostrarAviones(listaAviones, tam, listaAerolineas, tamAero, listaTipos, tamTipo, listaPilotos, tamPilotos);
         peticionEnteroPositivo(&idIngresado, "\nIngrese ID : ", intentos);
         indice = buscarAvionId(listaAviones, tam, idIngresado);
         if(indice == -1)
@@ -183,7 +187,7 @@ int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[]
                 printf("      ID          Aerolinea          Tipo          Capacidad\n");
                 printf("_________________________________________________________________\n");
                 printf("_________________________________________________________________\n");
-                mostrarAvion(auxAvion, listaAerolineas, tamAero, listaTipos, tamTipo);
+                mostrarAvion(auxAvion, listaAerolineas, tamAero, listaTipos, tamTipo, listaPilotos, tamPilotos);
                 printf("_________________________________________________________________\n\n");
 
                 switch(subMenuModificar())
@@ -259,7 +263,7 @@ int inicializarAviones(eAvion listaAviones[], int tam)
 }
 
 
-int bajaAvion(eAvion listaAviones[], int tam, int id, eAerolineas aerolineas[], int tamAero, eTipo tipos[], int tamTipo)
+int bajaAvion(eAvion listaAviones[], int tam, int id, eAerolineas aerolineas[], int tamAero, eTipo tipos[], int tamTipo, ePiloto listaPilotos[], int tamPilotos)
 {
     int error = 1;
     int indice;
@@ -282,7 +286,7 @@ int bajaAvion(eAvion listaAviones[], int tam, int id, eAerolineas aerolineas[], 
             printf("      ID          Aerolinea          Tipo          Capacidad\n");
             printf("_____________________________________________________________\n\n");
             printf("_____________________________________________________________\n\n");
-            mostrarAvion(listaAviones[indice], aerolineas, tamAero, tipos, tamTipo);
+            mostrarAvion(listaAviones[indice], aerolineas, tamAero, tipos, tamTipo, listaPilotos, tamPilotos);
 
             printf("\nconfirma borrado (si/s): ");
             fflush(stdin);
@@ -314,7 +318,7 @@ int validarIdAvion(int id, eAvion listaAviones[], int tamAvion)
     return esValido;
 }
 
-int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, char texto[], int intentos)
+int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPilotos[], int tamPilotos, char texto[], int intentos)
 {
     int retorno = 0;
     int numAux;
@@ -322,7 +326,7 @@ int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas
 
     if (listaAviones != NULL && texto != NULL && intentos > 0 && numId != NULL)
     {
-        mostrarAviones(listaAviones, tamAvion, listaAerolineas, tamAero, listaTipos, tamTipo);
+        mostrarAviones(listaAviones, tamAvion, listaAerolineas, tamAero, listaTipos, tamTipo, listaPilotos, tamPilotos);
 
         printf("%s", texto);
         esNum = scanf("%d", &numAux);
@@ -373,6 +377,43 @@ int cargarDescripcionAvion( eAvion listaAviones[], int tamAviones, int id, int* 
         }
     }
     return todoOk;
+}
+
+int mostrarAvionPorAerolinea(eAvion listaAviones[], int tamAviom, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipos, ePiloto listaPilotos[], int tamPilotos, int intentos)
+{
+    int retorno = 0;
+    int idAero;
+    if(peticionIdAerolineas(&idAero, listaAerolineas, tamAero, "Ingrese ID : ", intentos))
+    {
+        for (int i = 0 ; i < tamAviom; i++)
+        {
+            if(listaAviones[i].idAerolinea == idAero && listaAviones[i].isEmpty == 1)
+            {
+                mostrarAvion(listaAviones[i], listaAerolineas, tamAero, listaTipos, tamTipos,listaPilotos, tamPilotos);
+            }
+        }
+    }
+
+
+    return retorno;
+}
+
+int mostrarAvionPorTipo(eAvion listaAviones[], int tamAviom, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipos, ePiloto listaPilotos[], int tamPilotos, int intentos)
+{
+    int retorno = 0;
+    int idTipo;
+    if(peticionIdTipo(&idTipo, listaTipos, tamTipos, "Ingrese ID : ", intentos))
+    {
+        for (int i = 0 ; i < tamAviom; i++)
+        {
+            if(listaAviones[i].idTipo == idTipo && listaAviones[i].isEmpty == 1)
+            {
+                mostrarAvion(listaAviones[i], listaAerolineas, tamAero, listaTipos, tamTipos,listaPilotos, tamPilotos);
+            }
+        }
+    }
+
+    return retorno;
 }
 
 

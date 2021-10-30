@@ -58,7 +58,7 @@ int buscarLibreVuelo(eVuelo listaVuelos[], int tamVuelos);
              espacio libre] - (1) si está bien
  *
  */
-int altaVuelo(eVuelo listaVuelos[], int tamVuelos, eAvion listaAviones[], int tamAviones, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, eDestino listaDestinos[], int tamDest, int* pId, int intentos);
+int altaVuelo(eVuelo listaVuelos[], int tamVuelos, eAvion listaAviones[], int tamAviones, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, eDestino listaDestinos[], int tamDest, ePiloto listaPiloto[], int tamPilotosa, int* pId, int intentos);
 
 /** \brief Muestra datos de la estuctura Avion.
  *

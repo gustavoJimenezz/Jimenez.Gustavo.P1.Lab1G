@@ -9,7 +9,7 @@
 #include "vuelo.h"
 #include "funcionesValidacion.h"
 
-int altaVuelo(eVuelo listaVuelos[], int tamVuelos, eAvion listaAviones[], int tamAviones, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, eDestino listaDestinos[], int tamDest, int* pId, int intentos)
+int altaVuelo(eVuelo listaVuelos[], int tamVuelos, eAvion listaAviones[], int tamAviones, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, eDestino listaDestinos[], int tamDest, ePiloto listaPilotos[], int tamPilotos, int* pId, int intentos)
 {
     int todoOk = 0;
     int indice;
@@ -25,7 +25,7 @@ int altaVuelo(eVuelo listaVuelos[], int tamVuelos, eAvion listaAviones[], int ta
         {
             auxVuelo.id = *pId;
             (*pId)++;
-            if(!peticionIdAvion(&auxVuelo.idAvion, listaAviones, tamAviones, listaAerolineas, tamAero, listaTipos, tamTipo,"Ingrese ID : ", intentos))
+            if(!peticionIdAvion(&auxVuelo.idAvion, listaAviones, tamAviones, listaAerolineas, tamAero, listaTipos, tamTipo, listaPilotos, tamPilotos, "Ingrese ID : ", intentos))
             {
                 todoOk = 1;
             }

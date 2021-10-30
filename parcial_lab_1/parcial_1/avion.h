@@ -1,4 +1,4 @@
-
+#include "estructuraPiloto.h"
 #ifndef AVION_H_INCLUDED
 #define AVION_H_INCLUDED
 
@@ -8,6 +8,7 @@ typedef struct
     int idAerolinea;
     int idTipo;
     int capacidad;
+    int ipPiloto;
     int isEmpty;
 
 } eAvion;
@@ -59,7 +60,7 @@ int peticionCapacidad( int* capacidad , char texto[], int intentos);
  * \return void
  *
  */
-void mostrarAvion(eAvion unAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo);
+void mostrarAvion(eAvion unAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPiloto[], int tamPiloto);
 
 /** \brief Muestra datos de un array de eAvion.
  *
@@ -73,7 +74,7 @@ void mostrarAvion(eAvion unAvion, eAerolineas listaAerolineas[], int tamAero, eT
              espacio libre] - (1) si está bien
  *
  */
-int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo);
+int mostrarAviones(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPiloto[], int tamPiloto);
 
 /** \brief Cambia el valor de isEmpty del array a 0.
  *
@@ -99,7 +100,7 @@ int inicializarAviones(eAvion lista[], int tam);
              espacio libre] - (1) si está bien
  *
  */
-int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, int intentos);
+int modificarAvion(eAvion listaAviones[], int tam, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, int intentos, ePiloto listaPilotos[], int tamPilotos);
 
 /** \brief Submenu con opciones.
  *
@@ -132,7 +133,7 @@ int buscarAvionId(eAvion listaAviones[], int tam, int Id);
              espacio libre] - (1) si está bie
  *
  */
-int bajaAvion(eAvion listaAviones[], int tam, int id, eAerolineas aerolineas[], int tamAero, eTipo tipos[], int tamTipo);
+int bajaAvion(eAvion listaAviones[], int tam, int id, eAerolineas aerolineas[], int tamAero, eTipo tipos[], int tamTipo, ePiloto listaPilotos[], int tamPilotos);
 
 /** \brief Revisa que el ID que se pasa por paramtro se encuentra en el array listaAviones.
  *
@@ -160,7 +161,8 @@ int validarIdAvion(int id, eAvion listaAviones[], int tamAvion);
              espacio libre] - (1) si está bien
  *
  */
-int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, char texto[], int intentos);
+int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipo, ePiloto listaPilotos[], int tamPilotos, char texto[], int intentos);
+
 
 /** \brief Pasa idAvion, idAerolineas y capacidad de la estructura eAvion a las variables pasados por parametro.
  *
@@ -175,5 +177,10 @@ int peticionIdAvion(int* numId, eAvion listaAviones[], int tamAvion, eAerolineas
  *
  */
 int cargarDescripcionAvion( eAvion listaAviones[], int tamAviones, int idAvion, int* idAerolineas, int* idTipo, int* capacidad);
+
+int mostrarAvionPorAerolinea(eAvion listaAviones[], int tamAviom, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipos, ePiloto listaPilotos[], int tamPilotos, int intentos);
+
+int mostrarAvionPorTipo(eAvion listaAviones[], int tamAviom, eAerolineas listaAerolineas[], int tamAero, eTipo listaTipos[], int tamTipos, ePiloto listaPilotos[], int tamPilotos, int intentos);
+
 
 #endif // AVION_H_INCLUDED

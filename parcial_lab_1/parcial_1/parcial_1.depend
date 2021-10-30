@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1635465980 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\aerolineas.c
+1635548512 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\aerolineas.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -8,7 +8,7 @@
 
 1635471156 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\hard.c
 
-1635471191 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\main.c
+1635558536 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -20,10 +20,11 @@
 	"avion.h"
 	"vuelo.h"
 	"funcionesValidacion.h"
+	"estructuraPiloto.h"
 
 1635474480 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\aerolinea.h
 
-1635470792 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\tipo.c
+1635548512 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\tipo.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -33,7 +34,7 @@
 
 1635474325 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\tipo.h
 
-1635472167 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\avion.c
+1635558452 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\avion.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -41,18 +42,19 @@
 	"aerolinea.h"
 	"tipo.h"
 	"destino.h"
+	"estructuraPiloto.h"
 	"avion.h"
 	"vuelo.h"
 	"funcionesValidacion.h"
 
-1635468793 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\destino.c
+1635548512 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\destino.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<string.h>
 	"destino.h"
 
-1635468865 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\vuelo.c
+1635551599 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\vuelo.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -66,11 +68,12 @@
 
 1635474566 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\destino.h
 
-1635473939 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\avion.h
+1635558442 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\avion.h
+	"estructuraPiloto.h"
 
-1635474777 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\vuelo.h
+1635551200 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\vuelo.h
 
-1635380852 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\fncionesvalidacion.c
+1635548512 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\fncionesvalidacion.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -80,4 +83,13 @@
 1635474892 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\funcionesvalidacion.h
 
 1635471150 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\hard.h
+
+1635551880 source:c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\estructurapiloto.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"estructuraPiloto.h"
+
+1635549273 c:\users\g\desktop\parciales_lab1\parcial_lab_1\parcial_1\estructurapiloto.h
 

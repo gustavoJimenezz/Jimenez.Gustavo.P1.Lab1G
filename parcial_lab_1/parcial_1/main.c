@@ -9,13 +9,14 @@
 #include "avion.h"
 #include "vuelo.h"
 #include "funcionesValidacion.h"
+#include "estructuraPiloto.h"
 
 #define MAX_LENGTH_STRING 20
 #define INTENTOS 3
 #define TAM_AERO 5
 #define TAM_TIPO 4
 #define TAM_DEST 4
-#define TAM 5
+#define TAM 10
 
 char menuPrincipal();
 int main()
@@ -31,10 +32,19 @@ int main()
     eAerolineas listaAerolineas[TAM_AERO] = {{1000,"Lan"}, {1001,"Iberia"}, {1002, "Norwegian"}, {1003, "American"}, {1004,"Austral"}};
     eTipo listaTipos[TAM_TIPO] = {{5000,"Jet"}, {5001,"Helice"}, {5002,"Planeador"}, {5003,"Carga"}};
     eDestino listaDestinos[TAM_DEST] = {{20000,"Calafate",22.250}, {20001,"Miami", 103.000}, {20002,"Madrid", 84.400}, {20003,"Amsterdam", 95.600}};
+    ePiloto listaPilotos[TAM] = {{1000,"Julian",'m'},{1001,"Pedro",'m'},{1002,"Julia", 'f'},{1003,"Noelia",'f'},{1004,"Carlos",'f'},{1005,"Pepito",'f'}
+    ,{1006,"Jose",'f'},{1007,"Adrian",'f'}};
 
-
-    eAvion listaAviones[TAM];// = {{1000,1001,5000,20,1},{1001,1002,5001,30,1},{1003,1003,5003,100,1},{1002,1004,5003,100,1},{1005,1004,5003,100,0}};
-    inicializarAviones(listaAviones, TAM);
+    eAvion listaAviones[TAM] = {{1000,1001,5000,20,1000,1},
+                                {1001,1002,5001,30,1001,1},
+                                {1003,1003,5003,100,1002,1},
+                                {1002,1004,5002,100,1003,1},
+                                {1004,1003,5001,100,1004,1},
+                                {1005,1002,5000,100,1005,1},
+                                {1006,1001,5002,100,1006,1},
+                                {1007,1000,5003,100,1007,1},
+                                {1008,1004,5000,100,1008,1}};
+    //inicializarAviones(listaAviones, TAM);
 
     eVuelo listaVuelos[TAM]; //= {{1000, 1000, 20000, {17,10,2020}, 1},{1001, 1001, 20001, {17,10,1995}, 1},{1001, 1002, 20002, {17,10,2015}, 1}};
     inicializarVuelos(listaVuelos, TAM);
@@ -66,7 +76,7 @@ int main()
                 printf("_____________________________________________________________\n\n");
                 printf("       ************* Modificar datos **************          \n");
                 printf("_____________________________________________________________\n");
-                if(modificarAvion(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, INTENTOS))
+                if(modificarAvion(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, INTENTOS, listaPilotos, TAM))
                 {
                     printf("No se pudo modificar\n");
                     printf("\n\n");
@@ -91,9 +101,9 @@ int main()
                 printf("          ************* Baja de Avion *************          \n");
                 printf("_____________________________________________________________\n\n");
 
-                mostrarAviones(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO);
+                mostrarAviones(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaPilotos, TAM);
                 peticionEnteroPositivo(&idIngresadoBaja, "\nIngrese ID : ", INTENTOS);
-                retornoBaja = bajaAvion(listaAviones, 10, idIngresadoBaja, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO);
+                retornoBaja = bajaAvion(listaAviones, 10, idIngresadoBaja, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaPilotos, TAM);
                 if(retornoBaja == 0)
                 {
                     printf("Baja de datos con exito\n");
@@ -108,7 +118,7 @@ int main()
             }
             else
             {
-                printf("Genere almenos un Alta de Avion\n");
+                printf("Genere almenos un Ata de Avion\n");
                 printf("\n\n");
             }
             break;
@@ -116,7 +126,7 @@ int main()
             if(alemenosUnAltaAvion == 1)
             {
                 system("cls");
-                if(!mostrarAviones(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO))
+                if(!mostrarAviones(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaPilotos, TAM))
                 {
                     printf(" Problemas para mostrar los datos\n");
                     printf("\n\n");
@@ -183,7 +193,7 @@ int main()
                 printf("_____________________________________________________________\n\n");
                 printf("                 ******  Alta de datos   *****                \n");
                 printf("_____________________________________________________________\n");
-                if(altaVuelo(listaVuelos, 10, listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaDestinos, TAM_DEST, &idVuelos, INTENTOS))
+                if(altaVuelo(listaVuelos, 10, listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaDestinos, TAM_DEST, listaPilotos, TAM, &idVuelos, INTENTOS))
                 {
                     printf("No se pudo realizar el alta\n");
                     printf("\n\n");
@@ -212,6 +222,12 @@ int main()
                 printf("Genere almenos un Alta de Vuelo\n");
                 printf("\n\n");
             }
+            break;
+        case 'j':
+            mostrarAvionPorAerolinea(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaPilotos, TAM, INTENTOS);
+            break;
+        case 'k':
+            mostrarAvionPorTipo(listaAviones, TAM, listaAerolineas, TAM_AERO, listaTipos, TAM_TIPO, listaPilotos, TAM, INTENTOS);
             break;
         case 'z':
             printf("Desea Salir? (si/s)(no/n) : ");
@@ -244,6 +260,8 @@ char menuPrincipal()
     printf("G. LISTAR DESTINOS\n");
     printf("H. ALTA VUELO\n");
     printf("I. LISTAR VUELOS\n");
+    printf("J. LISTAR AVIONES POR AEROLINEAS\n");
+    printf("K. LISTAR AVIONES POR TIPO\n");
     printf("Z- Salir\n");
     printf("__________________________________\n\n");
     printf("Ingrese opcion: ");
